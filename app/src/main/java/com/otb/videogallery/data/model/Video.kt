@@ -9,6 +9,6 @@ data class Video(
     val id: String,
     val title: String,
     val url: String,
-    var player : SimpleExoPlayer? = null,
-    var isBookmarked : Boolean  = false
+    var player: SimpleExoPlayer? = null,
+    var isBookmarked: Boolean = false
 )

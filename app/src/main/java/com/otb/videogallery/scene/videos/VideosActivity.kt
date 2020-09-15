@@ -1,7 +1,9 @@
 package com.otb.videogallery.scene.videos
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,23 +15,25 @@ import com.otb.videogallery.common.longToast
 import com.otb.videogallery.data.model.Error
 import com.otb.videogallery.data.model.Success
 import com.otb.videogallery.data.model.Video
+import com.otb.videogallery.databinding.ActivityVideosBinding
 import kotlinx.android.synthetic.main.activity_videos.*
 
 
 class VideosActivity : AppCompatActivity(), VideoBookmarkListener {
     private lateinit var videosViewModel: VideosViewModel
     private val videos = mutableListOf<Video>()
+    private lateinit var binding : ActivityVideosBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_videos)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_videos)
         init()
         setupViewModel()
     }
 
     private fun init() {
         rvVideos.layoutManager = LinearLayoutManager(this)
-        rvVideos.adapter = VideoAdapter(videos, this)
+        binding.rvVideos.adapter = VideoAdapter(videos, this)
         PagerSnapHelper().attachToRecyclerView(rvVideos)
         rvVideos.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -42,6 +46,8 @@ class VideosActivity : AppCompatActivity(), VideoBookmarkListener {
                 }
             }
         })
+
+
     }
 
     private fun setupViewModel() {

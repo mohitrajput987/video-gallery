@@ -1,6 +1,5 @@
 package com.otb.videogallery.scene.videos
 
-import androidx.databinding.Bindable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -42,6 +41,9 @@ class VideosViewModel(private val repository: VideosContract.Repository) : ViewM
         super.onCleared()
     }
 
-    @Bindable
     override fun getVideos(): LiveData<DataResult<List<Video>>> = videos
+
+    override fun updateBookmark(videoId: String) {
+        repository.updateBookmark(videoId)
+    }
 }

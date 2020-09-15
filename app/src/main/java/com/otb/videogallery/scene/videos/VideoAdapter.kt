@@ -26,8 +26,7 @@ import kotlinx.android.synthetic.main.layout_item_video.view.*
 /**
  * Created by Mohit Rajput on 14/9/20.
  */
-class VideoAdapter(private val videos: List<Video>) :
-        RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
+class VideoAdapter(private val videos: List<Video>, private val videoBookmarkListener: VideoBookmarkListener) : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
 
     inner class VideoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -47,6 +46,7 @@ class VideoAdapter(private val videos: List<Video>) :
 
         itemView.ivBookmark.setOnClickListener {
             video.isBookmarked = video.isBookmarked.not()
+            videoBookmarkListener.onBookmarkBtnClicked(video.id)
             notifyItemChanged(position)
         }
     }
@@ -68,4 +68,8 @@ class VideoAdapter(private val videos: List<Video>) :
         player.prepare(loopingSource)
         return player
     }
+}
+
+interface VideoBookmarkListener {
+    fun onBookmarkBtnClicked(videoId: String)
 }

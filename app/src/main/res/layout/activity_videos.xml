@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGray"
+    android:orientation="vertical">
 
-    <data>
-        <variable
-            name="videosViewModel"
-            type="com.otb.videogallery.scene.videos.VideosViewModel" />
-    </data>
-
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvVideos"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/lightGray"
-        android:orientation="vertical">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvVideos"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-</layout>
+        android:layout_height="match_parent" />
+</LinearLayout>

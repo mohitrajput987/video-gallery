@@ -11,9 +11,11 @@ import io.reactivex.Single
 class VideosContract {
     interface ViewModel {
         fun getVideos(): LiveData<DataResult<List<Video>>>
+        fun updateBookmark(videoId: String)
     }
 
     interface Repository {
         fun getDeviceVideos(): Single<List<Video>>
+        fun updateBookmark(videoId: String)
     }
 }
